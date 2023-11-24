@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <title>Searching With</title>
+  </head>
+  <body>
+    <style>
+      .highlight {
+        background-color: yellow;
+        font-weight: bold;
+      }
+    </style>
+    <p class="searchHere">Hello World</p>
+    <h1 class="searchHere">This is Md. Habibur Rahman Shohel</h1>
+    <p>
+      Search for a word here:
+      <span>
+        <input type="text" name="search" id="search" />
+      </span>
+    </p>
+    <h2 class="searchHere">My first line</h2>
+    <h3 class="searchHere">My 2nd line</h3>
+    <h4 class="searchHere">
+      Dramatically brand progressive models for timely products. Monotonectally
+      monetize reliable action items after holistic alignments. Energistically
+      simplify goal-oriented total linkage and strategic methodologies.
+      Holisticly parallel task principle-centered networks via interdependent
+      strategic theme areas. Continually disseminate mission-critical
+      infrastructures and go forward growth strategies. Appropriately generate
+      visionary methodologies rather than backend alignments. Interactively
+      foster 24/7 opportunities with empowered leadership. Progressively iterate
+      dynamic relationships for transparent vortals. Compellingly implement
+      effective strategic theme areas vis-a-vis multifunctional web-readiness.
+      Uniquely exploit.
+    </h4>
+    <script>
+      $("#search").on("input", function () {
+        var value = $(this).val().trim().toUpperCase();
+        console.log("value: ", value);
+        $(".searchHere").each(function () {
+          var text = $(this).text().toUpperCase();
+          console.log("text: ", text);
+          if (text.includes(value)) {
+            $(this).html(highlight($(this).text(), value));
+          } else {
+            $(this).hide();
+          }
+        });
+      });
+
+      function highlight(text, searchValues) {
+        return text.replace(
+          new RegExp(searchValues, "gi"),
+          (match) => `<span class="highlight">${match}</span>`
+        );
+      }
+    </script>
+  </body>
+</html>
